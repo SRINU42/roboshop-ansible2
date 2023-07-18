@@ -18,9 +18,9 @@
         state: directory
 
 
-    - name: Download and extract the cntent
+    - name: Download and extract Frontend
       ansible.builtin.unarchive:
-        src: https://roboshop-artifacts.s3.amazonaws.com/fontend.zip
+        src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
         dest: /usr/share/nginx/html
         remote_src: yes
 
