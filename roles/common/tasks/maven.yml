@@ -1,0 +1,14 @@
+    echo -e "${color} Install  maven  ${nocolor}"
+    yum install maven -y &>>${log_file}
+
+    app_presetup
+
+
+    echo -e "${color} dowload Maven Dependencies  ${nocolor}" 
+    mvn clean package &>>${log_file}
+    mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
+
+    mysql_schema_setup
+
+    systemd_setup 
+
