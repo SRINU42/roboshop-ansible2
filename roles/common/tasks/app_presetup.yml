@@ -1,4 +1,4 @@
-- neme: Add Application user
+- name: Add Application user
   ansible.builtin.user:
     name: roboshop
 
