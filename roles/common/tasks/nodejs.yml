@@ -1,15 +1,12 @@
-# - name: dowload NodeJS file
-#   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-
 - name: Configuring NodeJS Repos
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 - name: Install NodeJS
   ansible.builtin.yum:
-    name: nodejs
+    name: nodejs  
     state: latest
 
-- name: app_presetup 
+- name: Include task list in play
   ansible.builtin.import_tasks:
     file: app_presetup.yml
 
@@ -18,10 +15,38 @@
   args:
     chdir: /app
 
-  asible.builtin.shell: npm install    
-  args:
-    chdir: /app
-
-- name: Systemd Setup 
+- name: Include task list in play
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
+    
+# # - name: dowload NodeJS file
+# #   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+# - name: Configuring NodeJS Repos
+#   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+# - name: Install NodeJS
+#   ansible.builtin.yum:
+#     name: nodejs
+#     state: latest
+
+# # - name: app_presetup 
+# #   ansible.builtin.import_tasks:
+# #     file: app_presetup.yml
+
+# - name: Include task list in play
+#   ansible.builtin.import_tasks:
+#     file: app_presetup.yml
+
+# - name: Install NodeJS Dependencies
+#   ansible.builtin.shell: npm install
+#   args:
+#     chdir: /app
+
+#   asible.builtin.shell: npm install    
+#   args:
+#     chdir: /app
+
+# - name: Systemd Setup 
+#   ansible.builtin.import_tasks:
+#     file: systemd_setup.yml
