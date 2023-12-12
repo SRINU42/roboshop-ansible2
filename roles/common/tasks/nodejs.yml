@@ -3,10 +3,9 @@
 
 - name: Install NodeJS
   ansible.builtin.yum:
-        name: nodejs
-        state: latest
-- name: app_presetup
- 
+    name: nodejs
+    state: latest
+
 - name: app_presetup 
   ansible.builtin.import_tasks:
     file: app_presetup.yml
