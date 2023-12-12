@@ -1,0 +1,30 @@
+- name: Installing Golang
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: Include task list in play
+  ansible.builtin.import_tasks:
+    file: app_presetup.yml
+
+# echo -e "${color} Init ${component} ${nocolor}"
+# cd ${app_path} &>>${log_file}
+# go mod init ${component} &>>${log_file}
+# go get &>>${log_file}
+# go build &>>${log_file}
+- name: Download Init {{ component }}
+  ansible.builtin.shell: go mod init {{ component }} ; go get ; go build
+  args:
+    chdir: /app
+
+# echo -e "${color} Start System service ${nocolor}"
+# cp /home/centos/roboshop-shell2/ ${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+
+# echo -e "${color} Start SystemD  ${nocolor}"
+# systemctl daemon-reload &>>${log_file}
+# systemctl enable ${component} &>>${log_file}
+# systemctl restart ${component} &>>${log_file}
+
+- name: Include task list in play
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
