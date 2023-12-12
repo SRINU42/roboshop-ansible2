@@ -1,7 +1,13 @@
-- name: Load NodeJs
+# - name: Load NodeJs
+#   ansible.builtin.import_role:
+#     name: common
+#     tasks_from: nodejs
+
+- name: catalogue setup
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs
+
 
 - name: schema setup
   ansible.builtin.import_role:
