@@ -1,12 +1,15 @@
-- name: Configuring NodeJS Repos
+- name: disable nodejs leatest version
   ansible.builtin.shell: dnf module disable nodejs -y 
-- name: Configuring NodeJS Repos
+
+- name: enable nodejs:18
   ansible.builtin.shell: dnf module enable nodejs:18 -y
 
-- name: Install NodeJS
-  ansible.builtin.yum:
-    name: nodejs  
-    state: installed
+- name: enable nodejs:18
+  ansible.builtin.shell: dnf install nodejs -y
+# - name: Install NodeJS
+#   ansible.builtin.yum:
+#     name: nodejs  
+#     state: installed
 
 - name: Include task list in play
   ansible.builtin.import_tasks:
