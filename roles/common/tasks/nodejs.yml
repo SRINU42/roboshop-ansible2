@@ -9,7 +9,7 @@
 #     name: nodejs  
 #     state: installed
 - name: Install NodeJS
-ansible.builtin.shell: dnf install nodejs -y
+  ansible.builtin.shell: dnf install nodejs -y
 
 - name: Include task list in play
   ansible.builtin.import_tasks:
