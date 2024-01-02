@@ -4,6 +4,16 @@
     # mongo --host mongodb-{{env}}.devopssessions.store <${app_path}/schema/${component}.js &>>${log_file}
     # stat_check $?
 
+# - name: mongodb repo file
+#   ansible.builtin.copy:
+#     src: mongodb.repo
+#     dest: /etc/yum.repos.d/mongodb.repo
+
+# - name: install mongodb
+#   ansible.builtin.yum:
+#     name: mongodb-org
+#     state: latest 
+
 - name: mongodb repo file
   ansible.builtin.copy:
     src: mongodb.repo
@@ -12,7 +22,7 @@
 - name: install mongodb
   ansible.builtin.yum:
     name: mongodb-org
-    state: latest 
+    state: latest
 
 - name: Loading the catalouge
   ansible.builtin.shell: mongo --host mongodb-{{env}}.devopssessions.store </app/schema/{{ component }}.js  
