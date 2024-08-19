@@ -4,14 +4,12 @@
 - name: enable nodejs:18
   ansible.builtin.shell: dnf module enable nodejs:18 -y
 
-# - name: Install NodeJS
-#   ansible.builtin.yum
-#     name: nodejs  
-#     state: installed
 - name: Install NodeJS
-  ansible.builtin.shell: dnf install nodejs -y
+  ansible.builtin.yum:
+    name: nodejs  
+    state: installed
 
-- name: App Pre-requisites
+- name: Include task list in play
   ansible.builtin.import_tasks:
     file: app_presetup.yml
 
@@ -19,13 +17,12 @@
   ansible.builtin.shell: npm install
   args:
     chdir: /app
-    
-# - name: Load Schema
-#   ansible.builtin.import_tasks:
-#     file: mongo_schema_setup.yml
-#   when: load_schema
+- name: Include task list in play
+  ansible.builtin.import_tasks:
+    file: mongo_schema_setup.yml
+  when: load_schema
 
-- name: systemd setup
+- name: Include task list in play
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
     
