@@ -4,5 +4,5 @@
     state: installed
 
 - name: Load Schema
-  ansible.builtin.shell: mysql -h mysql-{{env}}.devopssessions.store -uroot -pRoboShop@1 </app/schema/{{ component }}.sql
+  ansible.builtin.shell: mysql -h mysql-{{env}}.erobo.online -uroot -pRoboShop@1 </app/schema/{{ component }}.sql
 
